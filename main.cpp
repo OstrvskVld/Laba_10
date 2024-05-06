@@ -5,42 +5,34 @@
 
 using namespace std;
 
-int countAs(const string& str) {
-    int count = 0;
-    for (char c : str) {
-        if (c == 'a') {
-            count++;
-        }
-        if ( c == 'b'){
-            count++;
-        }
-        if ( c == 'c'){
-            count++;
-        }
-        if ( c == 'd'){
-            count++;
-        }
-    }
-    return count;
-}
+//task 1
 
-int main() {
-    vector<string> mySets = {"abbbbccccddd", "aaabcdd", "bbccdaa"};
-
-
-    string minAString = *min_element(mySets.begin(), mySets.end(), [](const string& s1, const string& s2) {
-        return countAs(s1) < countAs(s2);
-    });
+//int main() {
+//    string line1 = "abcdefg";
+//    string line2 = "fabc";
+//
+//    set<char> chars(line2.begin(), line2.end());
+//
+//    auto is_in_chars = [chars](char c) {
+//        return chars.find(c) != chars.end();
+//    };
+//
+//    auto it_begin = find_if(line1.begin(), line1.end(), is_in_chars);
+//    auto it_end = find_if_not(it_begin, line1.end(), is_in_chars);
+//
+//    if (it_end != line1.end()) {
+//        cout << "Smallest range: " << *it_begin << " - " << *it_end << endl;
+//    } else {
+//        cout << "there is no range with symbol from line2" << endl;
+//    }
+//
+//    return 0;
+//}
 
 
-    cout << "String with minimum 'a' characters: " << minAString << endl;
-
-    return 0;
-}
 
 
 //task 2
-
 
 //int counter = 0;
 //int cooldown = 2;
@@ -89,3 +81,41 @@ int main() {
 //}
 
 
+
+//task 3
+
+struct Players {
+    string name;
+    int age;
+    int index;
+
+    Players(string nname, int nage, int nindex)
+            : name{nname}, age{nage}, index{nindex} {}
+};
+
+void printPlayers(const vector<Players>& players) {
+    for (const Players& player : players) {
+        cout << player.name << " " << player.age << " " << player.index << endl;
+    }
+}
+
+int main() {
+vector<Players> players{
+        {"Vova", 18, 3}, {"Vlad", 17, 2}, {"Anna", 21, 1}
+};
+
+
+cout << "Original players:\n";
+printPlayers(players);
+
+
+sort(players.begin(), players.end(), [](const Players& p1, const Players& p2) {
+    return p1.index < p2.index;
+});
+
+
+cout << "\nSorted players by index:\n";
+printPlayers(players);
+
+return 0;
+}
